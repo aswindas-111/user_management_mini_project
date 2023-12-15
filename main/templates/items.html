@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<ul class="nav">
+  <li class="nav-item">
+      <form action="{% url 'user_logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit">Logout</button>
+      </form>
+  </li>
+  
+  <li class="nav-item">
+    <h3>Items</h3>
+  </li>
+  
+</ul>
+<h1>PRODUCTS</h1><br>
+<ul>
+<div class="container">
+    <div class="row">
+    {% for product in products %}
+
+    
+    <div class="card mycard" style="width: 18rem;">
+      <img src={{product.image}} class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <p class="card-text">{{product.price}}</p>
+        <a href="#" class="btn btn-primary">BUY NOW</a>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+</ul>
+
+{% endblock %}
