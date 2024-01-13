@@ -5,7 +5,10 @@ from django.contrib.auth import authenticate
 from . models import product
 
 # Create your views here.
+
+
 def loginpage(request):
+    '''FUNCTIONALITY OF LOGIN PAGE'''
     if 'username' in request.session:
         return redirect('items')
     if request.method == "POST":
@@ -25,6 +28,7 @@ def loginpage(request):
     return render(request,'login.html')
 
 def signup(request):
+    '''FUNCTIONALITY OF SIGNUP PAGE'''
     if request.method == "POST":
         username = request.POST['username']
         email = request.POST['email']
@@ -38,9 +42,11 @@ def signup(request):
     
     return render(request,'signup.html')
 def home(request):
+    '''FUNCTIONALITY OF HOME PAGE'''
     return render(request,'home.html')
 
 def items(request):
+    '''FUNCTIONALITY OF PRODUCTS LISTING'''
     if 'username' in request.session:
         products = product.objects.all()
         
@@ -48,6 +54,7 @@ def items(request):
     return redirect('login')
 
 def user_logout(request):
+    '''FUNCTIONALITY OF LOGOUT'''
     if 'username' in request.session:
         request.session.flush()
     return redirect('login')
